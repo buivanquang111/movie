@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorbackground">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--viewflipper-->
+
+
+
+        <ViewFlipper
+            android:id="@+id/viewFlipper"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_150sdp"/>
+
+        <TextView
+            android:id="@+id/tvPhimHot"
+            android:layout_below="@+id/viewFlipper"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:paddingLeft="@dimen/_10sdp"
+            android:text="Phim Hot"
+            android:textStyle="bold"
+            android:textSize="@dimen/_20sdp"
+            android:textColor="@color/colortext"
+            android:background="@color/colorlist"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_below="@+id/tvPhimHot"
+            android:id="@+id/listDeXuat"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_150sdp"
+            android:background="@color/colorlist"/>
+
+        <TextView
+            android:id="@+id/tvPhimSCC"
+            android:layout_below="@+id/listDeXuat"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:paddingLeft="@dimen/_10sdp"
+            android:text="Phim sap cong chieu"
+            android:textSize="@dimen/_20sdp"
+            android:textStyle="bold"
+            android:textColor="@color/colortext"
+            android:background="@color/colorlist"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listDeXuat2"
+            android:layout_below="@+id/tvPhimSCC"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_150sdp"
+            android:background="@color/colorlist"/>
+
+        <TextView
+            android:id="@+id/tvPhimCL"
+            android:layout_below="@+id/listDeXuat2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:paddingLeft="@dimen/_10sdp"
+            android:text="Phim Chon Loc"
+            android:textStyle="bold"
+            android:textSize="@dimen/_20sdp"
+            android:textColor="@color/colortext"
+            android:background="@color/colorlist"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listDeXuat3"
+            android:layout_below="@+id/tvPhimCL"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_150sdp"
+            android:background="@color/colorlist"/>
+
+        <ProgressBar
+            android:id="@+id/progressbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"/>
+
+
+    </RelativeLayout>
+</ScrollView>
+
+
+
+</layout>
