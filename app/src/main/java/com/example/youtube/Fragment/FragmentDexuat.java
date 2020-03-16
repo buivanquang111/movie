@@ -22,8 +22,10 @@ import com.example.youtube.Adapter.AdapterDeXuat;
 import com.example.youtube.Contact.DeXuat;
 import com.example.youtube.Interface.IOnClickPlayDeXuat;
 import com.example.youtube.R;
+import com.example.youtube.SQL.SQLHelper;
 import com.example.youtube.databinding.FragmentFragmentDexuatBinding;
 import com.example.youtube.define.Define;
+import com.example.youtube.define.Define_Methods;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -42,6 +44,10 @@ public class FragmentDexuat extends Fragment {
     ArrayList<DeXuat> deXuatArrayList;
     ArrayList<DeXuat> deXuatArrayList2;
     ArrayList<DeXuat> deXuatArrayList3;
+
+    SQLHelper sqlHelper;
+    ArrayList<DeXuat> arrayListSQL;
+    Define_Methods define_methods = new Define_Methods();
 
 
     public static FragmentDexuat newInstance(){
@@ -145,6 +151,13 @@ public class FragmentDexuat extends Fragment {
                     public void onClickPlayDeXuat(DeXuat deXuat) {
                         Toast.makeText(getContext(),"click video",Toast.LENGTH_LONG).show();
 
+                        sqlHelper = new SQLHelper(getContext());
+                        arrayListSQL = sqlHelper.getAllItem();
+                        if(arrayListSQL.isEmpty()==false && define_methods.CHECK(deXuat.getText(),arrayListSQL)){
+                            sqlHelper.deleteItem(deXuat.getText());
+                        }
+                        sqlHelper.insertItem(deXuat);
+
                         Intent intent = new Intent(getContext(), PlayVideo.class);
                         intent.putExtra("link_mp4",deXuat.getMp4());
                         intent.putExtra("title",deXuat.getText());
@@ -224,6 +237,13 @@ public class FragmentDexuat extends Fragment {
                     public void onClickPlayDeXuat(DeXuat deXuat) {
                         Toast.makeText(getContext(),"click video",Toast.LENGTH_LONG).show();
 
+                        sqlHelper = new SQLHelper(getContext());
+                        arrayListSQL = sqlHelper.getAllItem();
+                        if(arrayListSQL.isEmpty()==false && define_methods.CHECK(deXuat.getText(),arrayListSQL)){
+                            sqlHelper.deleteItem(deXuat.getText());
+                        }
+                        sqlHelper.insertItem(deXuat);
+
                         Intent intent = new Intent(getContext(), PlayVideo.class);
                         intent.putExtra("link_mp4",deXuat.getMp4());
                         intent.putExtra("title",deXuat.getText());
@@ -301,6 +321,13 @@ public class FragmentDexuat extends Fragment {
                     @Override
                     public void onClickPlayDeXuat(DeXuat deXuat) {
                         Toast.makeText(getContext(),"click video",Toast.LENGTH_LONG).show();
+
+                        sqlHelper = new SQLHelper(getContext());
+                        arrayListSQL = sqlHelper.getAllItem();
+                        if(arrayListSQL.isEmpty()==false && define_methods.CHECK(deXuat.getText(),arrayListSQL)){
+                            sqlHelper.deleteItem(deXuat.getText());
+                        }
+                        sqlHelper.insertItem(deXuat);
 
                         Intent intent = new Intent(getContext(), PlayVideo.class);
                         intent.putExtra("link_mp4",deXuat.getMp4());

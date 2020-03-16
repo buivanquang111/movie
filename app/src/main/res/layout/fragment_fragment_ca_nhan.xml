@@ -46,7 +46,7 @@
             android:layout_below="@+id/reAccount">
 
             <RelativeLayout
-                android:id="@+id/reHistory"
+                android:id="@+id/rvHistory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_20sdp"
@@ -67,10 +67,19 @@
                     android:textStyle="bold"
                     android:textSize="@dimen/_15sdp"
                     android:textColor="@color/colortext"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:text="xem toàn bộ"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/_12sdp"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center"/>
             </RelativeLayout>
             <RelativeLayout
-                android:id="@+id/reDownload"
-                android:layout_below="@+id/reHistory"
+                android:id="@+id/rvDownload"
+                android:layout_below="@+id/rvHistory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_20sdp"

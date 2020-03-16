@@ -1,8 +1,6 @@
 package com.example.youtube.Fragment;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -14,19 +12,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.Toast;
 
 import com.example.youtube.Activity.PlayVideo;
-import com.example.youtube.Adapter.AdapterPhimBo;
 import com.example.youtube.Adapter.AdapterPhimLe;
-import com.example.youtube.Contact.PhimBo;
+import com.example.youtube.Contact.DeXuat;
 import com.example.youtube.Contact.PhimLe;
-import com.example.youtube.Interface.IOnClickPlayPhimBo;
 import com.example.youtube.Interface.IOnClickPlayPhimLe;
 import com.example.youtube.R;
+import com.example.youtube.SQL.SQLHelper;
 import com.example.youtube.databinding.FragmentFragmentPhimLeBinding;
 import com.example.youtube.define.Define;
+import com.example.youtube.define.Define_Methods;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -42,6 +39,11 @@ public class FragmentPhimLe extends Fragment {
     FragmentFragmentPhimLeBinding binding;
     AdapterPhimLe adapterPhimLe;
     ArrayList<PhimLe> phimLeArrayList;
+
+    SQLHelper sqlHelper;
+    ArrayList<DeXuat> arrayListSQL;
+    Define_Methods define_methods = new Define_Methods();
+
 
     public static FragmentPhimLe newInstance(){
         Bundle args=new Bundle();
@@ -115,6 +117,14 @@ public class FragmentPhimLe extends Fragment {
                     @Override
                     public void onClickPlayPhimLe(PhimLe phimLe) {
                         Toast.makeText(getContext(),"click video phim le",Toast.LENGTH_LONG).show();
+
+                        DeXuat deXuat = new DeXuat(phimLe.getImg(),phimLe.getTitle(),phimLe.getMp4());
+                        sqlHelper = new SQLHelper(getContext());
+                        arrayListSQL = sqlHelper.getAllItem();
+                        if(arrayListSQL.isEmpty()==false && define_methods.CHECK(deXuat.getText(),arrayListSQL)){
+                            sqlHelper.deleteItem(deXuat.getText());
+                        }
+                        sqlHelper.insertItem(deXuat);
 
                         Intent intent = new Intent(getContext(), PlayVideo.class);
                         intent.putExtra("link_mp4",phimLe.getMp4());

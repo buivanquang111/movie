@@ -25,8 +25,10 @@ import com.example.youtube.Contact.PhimBo;
 import com.example.youtube.Interface.IOnClickPlayDeXuat;
 import com.example.youtube.Interface.IOnClickPlayPhimBo;
 import com.example.youtube.R;
+import com.example.youtube.SQL.SQLHelper;
 import com.example.youtube.databinding.FragmentFragmentPhimBoBinding;
 import com.example.youtube.define.Define;
+import com.example.youtube.define.Define_Methods;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -42,6 +44,10 @@ public class FragmentPhimBo extends Fragment {
     FragmentFragmentPhimBoBinding binding;
     AdapterPhimBo adapterPhimBo;
     ArrayList<PhimBo> phimBoArrayList;
+
+    SQLHelper sqlHelper;
+    ArrayList<DeXuat> arrayListSQL;
+    Define_Methods define_methods = new Define_Methods();
 
 
     public static FragmentPhimBo newInstance(){
@@ -116,6 +122,14 @@ public class FragmentPhimBo extends Fragment {
                     @Override
                     public void onClickPlayPhimBo(PhimBo phimBo) {
                         Toast.makeText(getContext(),"click video phim bo",Toast.LENGTH_LONG).show();
+
+                        DeXuat deXuat = new DeXuat(phimBo.getAvatar(),phimBo.getTitle(),phimBo.getFilemp4());
+                        sqlHelper = new SQLHelper(getContext());
+                        arrayListSQL = sqlHelper.getAllItem();
+                        if(arrayListSQL.isEmpty()==false && define_methods.CHECK(deXuat.getText(),arrayListSQL)){
+                            sqlHelper.deleteItem(deXuat.getText());
+                        }
+                        sqlHelper.insertItem(deXuat);
 
                         Intent intent = new Intent(getContext(), PlayVideo.class);
                         intent.putExtra("link_mp4",phimBo.getFilemp4());

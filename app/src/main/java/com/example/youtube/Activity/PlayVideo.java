@@ -28,8 +28,10 @@ import com.example.youtube.Contact.DeXuat;
 import com.example.youtube.Contact.PhimLe;
 import com.example.youtube.Interface.IOnClickPlayPhimLe;
 import com.example.youtube.R;
+import com.example.youtube.SQL.SQLHelperSave;
 import com.example.youtube.databinding.ActivityPlayVideoBinding;
 import com.example.youtube.define.Define;
+import com.example.youtube.define.Define_Methods;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -57,6 +59,10 @@ public class PlayVideo extends AppCompatActivity {
     int time;
     boolean reChangeVol = true;
     boolean reChangePosition = true;
+
+    SQLHelperSave sqlHelperSave;
+    Define_Methods define_methods = new Define_Methods();
+    ArrayList<DeXuat> arrayListDeXuatSave;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -149,6 +155,15 @@ public class PlayVideo extends AppCompatActivity {
             }
         });
 
+        //save
+        binding.savevideo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getBaseContext(),"save video",Toast.LENGTH_LONG).show();
+                addSave(deXuatSave);
+            }
+        });
+
         //back
         binding.back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -238,6 +253,7 @@ public class PlayVideo extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 binding.tvplayvideoview.setVisibility(View.VISIBLE);
+                binding.displaylist.setVisibility(View.VISIBLE);
                 binding.fullscreen.setVisibility(View.VISIBLE);
                 binding.exitfullscreen.setVisibility(View.GONE);
                 time = binding.playvideoview.getCurrentPosition();
@@ -335,7 +351,7 @@ public class PlayVideo extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            //binding.progressPhimLe.setVisibility(View.VISIBLE);
+            binding.progressbarPlayVideo.setVisibility(View.VISIBLE);
         }
 
         @Override
@@ -390,13 +406,23 @@ public class PlayVideo extends AppCompatActivity {
                 binding.rvListDeXuat.setAdapter(adapterPhimLe);
                 RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getBaseContext(), 1, RecyclerView.VERTICAL, false);
                 binding.rvListDeXuat.setLayoutManager(layoutManager);
-                //binding.progressPhimLe.setVisibility(View.GONE);
+                binding.progressbarPlayVideo.setVisibility(View.GONE);
 
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
         }
+
+    }
+
+    public void addSave(DeXuat dexuatAddSave){
+        sqlHelperSave = new SQLHelperSave(getBaseContext());
+        arrayListDeXuatSave = sqlHelperSave.getALLItem();
+        if(arrayListDeXuatSave.isEmpty()==false && define_methods.CHECK(dexuatAddSave.getText(),arrayListDeXuatSave)){
+            sqlHelperSave.deleteItem(dexuatAddSave.getText());
+        }
+        sqlHelperSave.insertItem(dexuatAddSave);
 
     }
 
