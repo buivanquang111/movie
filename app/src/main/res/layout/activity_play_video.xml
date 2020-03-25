@@ -180,49 +180,120 @@
                         android:textSize="@dimen/_18sdp"
                         android:textStyle="bold" />
                 </RelativeLayout>
-
             </RelativeLayout>
-
-
-
         </RelativeLayout>
 
-        <TextView
-            android:id="@+id/tvplayvideoview"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_30sdp"
-            android:layout_below="@id/rvplayvideoview"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:gravity="center"
-            android:text="title"
-            android:textColor="@color/colortext"
-            android:textStyle="bold" />
 
-        <TextView
-            android:layout_below="@+id/tvplayvideoview"
-            android:id="@+id/tvDeXuatVideo"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_10sdp"
-            android:text="Đề xuất video"
-            android:textSize="@dimen/_20sdp"
-            android:textColor="@color/colortext"/>
-        <RelativeLayout
-            android:id="@+id/displaylist"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tvDeXuatVideo">
+            android:layout_height="match_parent"
+            android:layout_below="@+id/rvplayvideoview">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvListDeXuat"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_300sdp" />
-            <ProgressBar
-                android:id="@+id/progressbarPlayVideo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"/>
-        </RelativeLayout>
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tvplayvideoview"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:gravity="center"
+                    android:text="title"
+                    android:textColor="@color/colortext"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/imgLike"
+                    android:layout_below="@+id/tvplayvideoview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_20sdp"
+                    android:src="@drawable/like"/>
+                <TextView
+                    android:id="@+id/tvLike"
+                    android:layout_below="@+id/imgLike"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_marginLeft="@dimen/_25sdp"
+                    android:text="0"
+                    android:gravity="center"
+                    android:textColor="@color/colortext"/>
+                <ImageButton
+                    android:id="@+id/imgDisLike"
+                    android:layout_toRightOf="@+id/imgLike"
+                    android:layout_below="@+id/tvplayvideoview"
+                    android:layout_marginLeft="@dimen/_20sdp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/dislike" />
+                <TextView
+                    android:id="@+id/tvDisLike"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_below="@+id/imgDisLike"
+                    android:layout_toRightOf="@+id/tvLike"
+                    android:layout_marginLeft="@dimen/_33sdp"
+                    android:text="0"
+                    android:textColor="@color/colortext"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:layout_below="@+id/tvLike"
+                    android:id="@+id/tvDeXuatVideo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:text="@string/dexuatvideo"
+                    android:textSize="@dimen/_20sdp"
+                    android:textColor="@color/colortext"/>
+
+
+                <RelativeLayout
+                    android:id="@+id/displaylist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvDeXuatVideo">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvListDeXuat"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_300sdp" />
+                        <ProgressBar
+                            android:id="@+id/progressbarPlayVideo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"/>
+                    </RelativeLayout>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/displaylist">
+
+                    <EditText
+                        android:id="@+id/edtComment"
+                        android:layout_toLeftOf="@+id/btnComment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="nhap comment"/>
+                    <Button
+                        android:id="@+id/btnComment"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="comment"/>
+                    <ListView
+                        android:id="@+id/listComment"
+                        android:layout_below="@+id/edtComment"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_300sdp"/>
+                </RelativeLayout>
+            </RelativeLayout>
+        </ScrollView>
 
     </RelativeLayout>
 </layout>

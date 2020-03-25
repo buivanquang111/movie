@@ -17,6 +17,7 @@ import com.example.youtube.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class AdapterPhimLe extends RecyclerView.Adapter<AdapterPhimLe.Viewhoder> {
     Context context;

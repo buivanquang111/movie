@@ -34,7 +34,7 @@
                     android:layout_height="@dimen/_30sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:paddingLeft="@dimen/_10sdp"
-                    android:text="Phim Hot"
+                    android:text="@string/phimhot"
                     android:textStyle="bold"
                     android:textSize="@dimen/_20sdp"
                     android:textColor="@color/colortext" />
@@ -68,7 +68,7 @@
                     android:layout_height="@dimen/_30sdp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:paddingLeft="@dimen/_10sdp"
-                    android:text="Phim sap cong chieu"
+                    android:text="@string/phimSCC"
                     android:textSize="@dimen/_20sdp"
                     android:textStyle="bold"
                     android:textColor="@color/colortext" />
@@ -96,7 +96,7 @@
                     android:layout_height="@dimen/_30sdp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:paddingLeft="@dimen/_10sdp"
-                    android:text="Phim Chon Loc"
+                    android:text="@string/phimCL"
                     android:textStyle="bold"
                     android:textSize="@dimen/_20sdp"
                     android:textColor="@color/colortext" />
@@ -113,7 +113,4 @@
 
     </RelativeLayout>
 </ScrollView>
-
-
-
 </layout>

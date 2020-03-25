@@ -1,5 +1,7 @@
 package com.example.youtube.Activity;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -18,6 +20,7 @@ import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.Toast;
@@ -28,10 +31,12 @@ import com.example.youtube.Contact.DeXuat;
 import com.example.youtube.Contact.PhimLe;
 import com.example.youtube.Interface.IOnClickPlayPhimLe;
 import com.example.youtube.R;
+import com.example.youtube.SQL.SQLHelper;
 import com.example.youtube.SQL.SQLHelperSave;
 import com.example.youtube.databinding.ActivityPlayVideoBinding;
 import com.example.youtube.define.Define;
 import com.example.youtube.define.Define_Methods;
+
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -41,12 +46,20 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 public class PlayVideo extends AppCompatActivity {
 
     ActivityPlayVideoBinding binding;
     Handler myHandler = new Handler();
     AdapterPhimLe adapterPhimLe;
     ArrayList<PhimLe> phimLeArrayList;
+    ArrayList<PhimLe> b;
 
     double currentposition,totalduration;
     ArrayList<DeXuat> arrayList;
@@ -60,9 +73,15 @@ public class PlayVideo extends AppCompatActivity {
     boolean reChangeVol = true;
     boolean reChangePosition = true;
 
+    SQLHelper sqlHelper;
+    ArrayList<DeXuat> arrayListSQL;
+
     SQLHelperSave sqlHelperSave;
     Define_Methods define_methods = new Define_Methods();
     ArrayList<DeXuat> arrayListDeXuatSave;
+
+    int countLike=0;
+    int countDisLike=0;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -70,6 +89,94 @@ public class PlayVideo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_video);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_play_video);
+
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final DatabaseReference myRef = database.getReference("comment");
+
+        final DatabaseReference myLike = database.getReference("like");
+        final DatabaseReference myDisLike = database.getReference("dislike");
+
+        //Like
+        binding.imgLike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                countLike++;
+                myLike.setValue(Integer.toString(countLike));
+            }
+        });
+        myLike.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                binding.tvLike.setText(dataSnapshot.getValue().toString());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        //dislike
+        binding.imgDisLike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                countDisLike++;
+                myDisLike.setValue(Integer.toString(countDisLike));
+            }
+        });
+        myDisLike.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                binding.tvDisLike.setText(dataSnapshot.getValue().toString());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        //comment
+        binding.btnComment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String cmt =binding.edtComment.getText().toString();
+                myRef.push().setValue(cmt);
+                binding.edtComment.setText("");
+            }
+        });
+        final ArrayList<String> mang = new ArrayList<String>();
+        final ArrayAdapter arrayAdapter = new ArrayAdapter(getApplicationContext(),android.R.layout.simple_list_item_1,mang);
+        binding.listComment.setAdapter(arrayAdapter);
+        myRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                mang.add(dataSnapshot.getValue().toString());
+                arrayAdapter.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
 
         String fileMp4 = getIntent().getStringExtra("link_mp4");
         String title = getIntent().getStringExtra("title");
@@ -272,7 +379,6 @@ public class PlayVideo extends AppCompatActivity {
 
 
 
-
     }
 
 
@@ -378,22 +484,34 @@ public class PlayVideo extends AppCompatActivity {
             super.onPostExecute(aVoid);
             try {
                 JSONArray jsonArray=new JSONArray(result);
+
                 for (int i=0;i<jsonArray.length();i++){
                     JSONObject jsonObject=jsonArray.getJSONObject(i);
                     String avatar=jsonObject.getString("avatar");
                     String title=jsonObject.getString("title");
                     String mp4=jsonObject.getString("file_mp4");
 
+
                     phimLeArrayList.add(new PhimLe(avatar,title,mp4));
 
                 }
-                //adapterVideo.notifyDataSetChanged();
+
+                //adapterPhimLe.notifyDataSetChanged();
+
                 adapterPhimLe=new AdapterPhimLe(phimLeArrayList);
 
                 adapterPhimLe.setiOnClickPlayPhimLe(new IOnClickPlayPhimLe() {
                     @Override
                     public void onClickPlayPhimLe(PhimLe phimLe) {
                         Toast.makeText(getBaseContext(),"click video phim le",Toast.LENGTH_LONG).show();
+
+                        DeXuat deXuat = new DeXuat(phimLe.getImg(),phimLe.getTitle(),phimLe.getMp4());
+                        sqlHelper = new SQLHelper(getBaseContext());
+                        arrayListSQL = sqlHelper.getAllItem();
+                        if(arrayListSQL.isEmpty()==false && define_methods.CHECK(deXuat.getText(),arrayListSQL)){
+                            sqlHelper.deleteItem(deXuat.getText());
+                        }
+                        sqlHelper.insertItem(deXuat);
 
                         Intent intent = new Intent(getBaseContext(), PlayVideo.class);
                         intent.putExtra("link_mp4",phimLe.getMp4());

@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'com.google.gms.google-services'
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "com.example.youtube"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -22,6 +22,9 @@ android {
 
     }
 }
+repositories {
+    mavenCentral()
+}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -29,10 +32,21 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'com.android.support:design:29.0.0'
     implementation 'com.intuit.sdp:sdp-android:1.0.5'
+    //doc image
     implementation 'com.squareup.picasso:picasso:2.5.2'
+    //sqlite
     implementation 'com.facebook.stetho:stetho:1.5.1'
+    //scanQR
+    implementation 'com.journeyapps:zxing-android-embedded:3.4.0'
+    //ket noi face
+    implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
+    //firebase
+
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.google.firebase:firebase-database:19.2.1'
+
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'

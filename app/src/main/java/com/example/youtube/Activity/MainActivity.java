@@ -14,6 +14,9 @@ import com.example.youtube.Fragment.FragmentTrangChu;
 import com.example.youtube.R;
 import com.example.youtube.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -45,13 +48,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-//    public void addTabs(ViewPager viewPager){
-//        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-//        adapter.add(new FragmentDexuat(),"Đề Xuất");
-//        adapter.add(new FragmentPhimBo(),"Phim Bộ");
-//        adapter.add(new FragmentPhimLe(),"Phim Lẻ");
-//        viewPager.setAdapter(adapter);
-//    }
+
+
 
     public void getFragment(Fragment fragment){
         try {
@@ -62,5 +60,4 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
 }

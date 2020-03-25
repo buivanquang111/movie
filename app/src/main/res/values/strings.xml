@@ -1,6 +1,22 @@
 <resources>
     <string name="app_name">youtube</string>
+    <string name="facebook_app_id">1759119577561983</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="history">Lịch sử đã xem</string>
+    <string name="language">Ngôn ngữ</string>
+    <string name="Anh">Anh</string>
+    <string name="dexuatvideo">Đề xuất video</string>
+    <string name="savevideo">Video đã lưu</string>
+    <string name="dangxuat">Đăng xuất</string>
+    <string name="lichsuxem">Lịch sử xem</string>
+    <string name="xemtoanbo">xem toàn bộ</string>
+    <string name="taive">Tải về</string>
+    <string name="scanqr">Quét mã QR</string>
+    <string name="phimhot">Phim Hot</string>
+    <string name="phimSCC">Phim Sắp Công Chiếu</string>
+    <string name="phimCL">Phim Chọn Lọc</string>
+    <string name="trangchu">Trang chủ</string>
+    <string name="canhan">Cá nhân</string>
+    <string name="VietNam">Việt Nam</string>
+
 </resources>

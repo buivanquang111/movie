@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewLanguage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="@dimen/_1sdp"
+            app:cardUseCompatPadding="true">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/backLanguage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_50sdp"
+                    android:src="@drawable/backhistory"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_50sdp"
+                    android:text="@string/language"
+                    android:textColor="@color/colortext"
+                    android:textSize="@dimen/_15sdp"
+                    android:textStyle="bold"
+                    android:layout_toRightOf="@+id/backLanguage"
+                    android:layout_marginLeft="@dimen/_20sdp"
+                    android:gravity="center"/>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+        <RelativeLayout
+            android:id="@+id/rvVietNam"
+            android:layout_below="@+id/cardViewLanguage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginLeft="@dimen/_10sdp">
+
+            <ImageView
+                android:id="@+id/imgVietNam"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:src="@drawable/icvietnam"/>
+            <TextView
+                android:layout_toRightOf="@+id/imgVietNam"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:text="@string/VietNam"
+                android:textColor="@color/colortext"
+                android:textSize="@dimen/_15sdp"
+                android:textStyle="bold"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:paddingTop="@dimen/_5sdp"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/rvAnh"
+            android:layout_below="@+id/rvVietNam"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginLeft="@dimen/_10sdp">
+
+            <ImageView
+                android:id="@+id/imgAnh"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:src="@drawable/icanh"/>
+            <TextView
+                android:layout_toRightOf="@+id/imgAnh"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:text="@string/Anh"
+                android:textColor="@color/colortext"
+                android:textSize="@dimen/_15sdp"
+                android:textStyle="bold"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:paddingTop="@dimen/_5sdp"/>
+        </RelativeLayout>
+
+    </RelativeLayout>
+</layout>

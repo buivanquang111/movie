@@ -8,36 +8,49 @@
         <RelativeLayout
             android:id="@+id/reAccount"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_100sdp"
+            android:layout_height="@dimen/_150sdp"
             android:background="@color/coloraccount">
 
-            <ImageView
-                android:id="@+id/imgAccount"
-                android:src="@drawable/account"
+
+            <com.facebook.login.widget.ProfilePictureView
+                android:id="@+id/imageprofilepictureview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/_30sdp"/>
+
+            <com.facebook.login.widget.LoginButton
+                android:id="@+id/login_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+               android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"/>
+
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:textColor="#ffffff"
+                android:layout_toRightOf="@+id/imageprofilepictureview"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/_25sdp"/>
+
+            <TextView
+                android:id="@+id/tvDangXuat"
                 android:layout_width="@dimen/_50sdp"
-                android:layout_height="@dimen/_50sdp"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/_20sdp"/>
-            <TextView
-                android:id="@+id/tvDangNhap"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Đăng nhập/"
-                android:textSize="@dimen/_15sdp"
-                android:textStyle="bold"
+                android:layout_height="@dimen/_20sdp"
+                android:gravity="center"
+                android:text="@string/dangxuat"
+                android:textSize="@dimen/_10sdp"
                 android:textColor="#ffffff"
-                android:layout_toRightOf="@+id/imgAccount"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/_10sdp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Đăng kí"
-                android:textSize="@dimen/_15sdp"
-                android:textStyle="bold"
-                android:textColor="#ffffff"
-                android:layout_toRightOf="@+id/tvDangNhap"
-                android:layout_centerVertical="true"/>
+                android:background="#424141"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"/>
+
         </RelativeLayout>
 
         <RelativeLayout
@@ -63,7 +76,7 @@
                     android:layout_height="@dimen/_30sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:layout_marginLeft="@dimen/_10sdp"
-                    android:text="Lịch sử xem"
+                    android:text="@string/lichsuxem"
                     android:textStyle="bold"
                     android:textSize="@dimen/_15sdp"
                     android:textColor="@color/colortext"/>
@@ -71,7 +84,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/_30sdp"
                     android:layout_marginRight="@dimen/_10sdp"
-                    android:text="xem toàn bộ"
+                    android:text="@string/xemtoanbo"
                     android:textStyle="bold"
                     android:textSize="@dimen/_12sdp"
                     android:layout_alignParentRight="true"
@@ -96,11 +109,60 @@
                     android:layout_height="@dimen/_30sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:layout_marginLeft="@dimen/_10sdp"
-                    android:text="Tải về"
+                    android:text="@string/taive"
                     android:textStyle="bold"
                     android:textSize="@dimen/_15sdp"
                     android:textColor="@color/colortext"/>
             </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rvScanQR"
+                android:layout_below="@+id/rvDownload"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginLeft="@dimen/_10sdp">
+
+                <ImageView
+                    android:id="@+id/scanQR"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:src="@drawable/scan"/>
+                <TextView
+                    android:layout_toRightOf="@+id/scanQR"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:text="@string/scanqr"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/_15sdp"
+                    android:textColor="@color/colortext"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rvLanguage"
+                android:layout_below="@+id/rvScanQR"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginLeft="@dimen/_10sdp">
+
+                <ImageView
+                    android:id="@+id/language"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:src="@drawable/language"/>
+                <TextView
+                    android:layout_toRightOf="@+id/language"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:text="@string/language"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/_15sdp"
+                    android:textColor="@color/colortext"/>
+            </RelativeLayout>
+
         </RelativeLayout>
 
     </RelativeLayout>

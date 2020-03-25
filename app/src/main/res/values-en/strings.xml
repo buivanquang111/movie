@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">youtube</string>
+    <string name="Anh">English</string>
+    <string name="VietNam">VietNam</string>
+    <string name="canhan">Personal</string>
+    <string name="dangxuat">Log Out</string>
+    <string name="dexuatvideo">Video Recommendations</string>
+    <string name="history">History Watched</string>
+    <string name="language">Language</string>
+    <string name="lichsuxem">View History</string>
+    <string name="phimCL">Selective Film</string>
+    <string name="phimSCC">Movie Coming Soon</string>
+    <string name="phimhot">Hot Movie</string>
+    <string name="savevideo">Video Saved</string>
+    <string name="scanqr">Scan QR</string>
+    <string name="taive">Download</string>
+    <string name="trangchu">Home</string>
+    <string name="xemtoanbo">See All</string>
+    <string name="facebook_app_id">175911977561983</string>
+</resources>
